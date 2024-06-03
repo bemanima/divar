@@ -1,7 +1,8 @@
 const autoBind = require("auto-bind");
-const UserModel = require("../user/user.model");
 const createHttpError = require("http-errors");
 const { randomInt } = require("crypto");
+
+const UserModel = require("../user/user.model");
 const { AuthMessage } = require("./auth.message");
 
 class AuthService {
@@ -40,7 +41,24 @@ class AuthService {
     return user;
   }
 
-  async checkOTP(mobile) {}
+  async checkOTP(mobile, code) {
+    const user = await this.checkExistByMobile(mobile);
+
+    const now = new Date().getTime();
+
+    if (user.otp?.expiresIn < now)
+      throw new createHttpError.Unauthorized(AuthMessage.OTPCodeExpired);
+
+    if (user.otp?.code !== code)
+      throw new createHttpError.Unauthorized(AuthMessage.OTPCodeIsIncorrect);
+
+    if (!user.verifiedMobile) {
+      user.verifiedMobile = true;
+      await user.save();
+    }
+
+    return user;
+  }
 
   async checkExistByMobile(mobile) {
     const user = await this.#model.findOne({ mobile });
