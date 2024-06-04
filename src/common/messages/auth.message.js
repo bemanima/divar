@@ -1,4 +1,4 @@
-const AuthorizationMessage = Object.freeze({
+const AuthMessage = Object.freeze({
   Login: "Login on your account",
   LoginAgain: "Please login again",
   Unauthorized: "Unauthorized! Please login on your account",
@@ -6,4 +6,4 @@ const AuthorizationMessage = Object.freeze({
   InvalidToken: "Token is invalid! Please login again",
 });
 
-module.exports = AuthorizationMessage;
+module.exports = AuthMessage;
