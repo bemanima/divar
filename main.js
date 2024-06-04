@@ -6,6 +6,7 @@ const SwaggerConfig = require("./src/config/swagger.config");
 const mainRouter = require("./app.routes");
 const notFoundHandler = require("./src/common/exception/not-found.handler");
 const allExceptionHandler = require("./src/common/exception/all-exception.handler");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
@@ -22,10 +23,11 @@ async function main() {
       extended: true,
     })
   );
-
-  SwaggerConfig(app);
+  app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
   app.use(mainRouter);
+
+  SwaggerConfig(app);
 
   notFoundHandler(app);
   allExceptionHandler(app);
