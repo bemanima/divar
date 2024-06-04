@@ -1,3 +1,5 @@
+const ExceptionMessage = require("../messages/exeption.message");
+
 const allExceptionHandler = (app) => {
   app.use((err, req, res, next) => {
     let status = err?.status ?? err?.statusCode ?? err?.code;
@@ -5,7 +7,8 @@ const allExceptionHandler = (app) => {
     if (!status || isNaN(status) || status > 511 || status < 200) status = 500;
 
     res.status(status).json({
-      message: err?.message ?? err?.stack ?? "InternalServerError",
+      message:
+        err?.message ?? err?.stack ?? ExceptionMessage.InternalServerError,
     });
   });
 };
