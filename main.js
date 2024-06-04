@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 
 const connectToDB = require("./src//config/mongo.config");
 const SwaggerConfig = require("./src/config/swagger.config");
-const mainRouter = require("./app.routes");
+const mainRouter = require("./src/app.routes");
 const notFoundHandler = require("./src/common/exception/not-found.handler");
 const allExceptionHandler = require("./src/common/exception/all-exception.handler");
 const cookieParser = require("cookie-parser");
