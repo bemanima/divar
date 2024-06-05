@@ -55,14 +55,6 @@ class CategoryService {
     return category;
   }
 
-  async checkExistsById(id) {
-    const category = await this.#model.findById(id);
-
-    if (!category) throw new createHttpError.NotFound(CategoryMessage.NotFound);
-
-    return category;
-  }
-
   async checkExistsBySlug(slug) {
     const category = await this.#model.findOne({ slug });
 
