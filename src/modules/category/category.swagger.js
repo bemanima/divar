@@ -17,12 +17,16 @@
  *                  properties:
  *                      name:
  *                          type: string
+ *                          default: ""
  *                      slug:
  *                          type: string
+ *                          default: ""
  *                      icon:
  *                          type: string
+ *                          default: ""
  *                      parent:
  *                          type: string
+ *                          default: ""
  */
 
 /**

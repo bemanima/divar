@@ -17,6 +17,7 @@
  *                  mobile:
  *                      type: string
  *                      description: User mobile field
+ *                      default: ""
  *          CheckOtp:
  *              type: object
  *              required:
@@ -26,9 +27,11 @@
  *                  mobile:
  *                      type: string
  *                      description: User mobile field
+ *                      default: ""
  *                  code:
  *                      type: string
  *                      description: User otp code
+ *                      default: ""
  */
 
 /**
